@@ -1,0 +1,13 @@
+.input-task-container{
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.input-field{
+    width: 250px;
+    height: 35px;
+    background-color: beige;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+}
