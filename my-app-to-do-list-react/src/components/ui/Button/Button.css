@@ -1,17 +1,38 @@
 .custom-button{
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    color: white;
-    transition: 0.3s;
+    transition: all 0.3s trasform 0.2s;
+    margin: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
 }
 
-.blue {background-color: #007bff;}
-.red {background-color: #ff4d4d;}
-.green{background-color: #2ecc71;}
-
-.custom.-button:hover{
+.custom-button:hover{
+    transform: translateY(-2px);
     filter: brightness(1.2);
+}
+
+.custom.-button:active{
+    transform: translateY(0);
+}
+
+.green{
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    color: white;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.red{
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.5);
+    color: #ff7675;
+}
+
+.red:hover{
+    background: rgba(231, 76, 60, 0.8);
+    color: white;
 }

@@ -1,11 +1,11 @@
 import './Button.css';
 
 
-function Button({ children, onclick, color = "blue" }) {
+function Button({ children, onClick, color = "blue" }) {
     return (
         <button
             className={`custom-button ${color}`}
-            onClick={onclick}
+            onClick={onClick}
         >
             {children}
         </button>
