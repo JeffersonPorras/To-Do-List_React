@@ -10,3 +10,16 @@ body{
     align-items: center;
     color: white;   
 }
+
+.menu-trigger{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}

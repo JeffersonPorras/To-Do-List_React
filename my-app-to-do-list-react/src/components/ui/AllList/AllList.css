@@ -1,0 +1,44 @@
+.All-list{
+    padding: 0;
+}
+
+.All-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.delete-btn{
+    background: transparent;
+    border: none;
+    color: #f84545;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.delete-btn:hover{
+    transform: scale(1.2);
+    filter: brightness(1.5);
+    color: red;
+}
+
+.check-list{
+    background: transparent;
+    border: none;
+    color:#2ecc71;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: transform 0.2s;
+    
+}
+
+.check-list:hover{
+    transform: scale(1.2);
+    filter: brightness(1.5);
+    color: green
+}

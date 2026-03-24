@@ -2,11 +2,16 @@ import { useState } from "react";
 import Button from "./components/ui/Button/Button";
 import Input from "./components/ui/Input/Input";
 import TaskList from "./components/ui/AllList/AllList";
+import Sidebar from "./components/ui/menu/Sidebar";
 
 function App() {
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   const [taskText, setTaskText] = useState(""); 
   const [taskList, setTaskList] = useState([]);
+
 
   const handleAdd = () =>{
     if (taskText.trim() === "")return;
@@ -14,13 +19,24 @@ function App() {
     setTaskText("");
   };
 
+  const deleteItem = (index) =>{
+    const newList = taskList.filter((_, indexActual) => indexActual !==index)
+    setTaskList(newList);
+  }
 
-  const handleDelete = () =>{
+  function handleDelete() {
     setTaskList([]);
-  };
+  }
 
   return(
     <div className="app-container">
+
+      <button className="menu-trigger" onClick={toggleMenu}>
+        ☰
+      </button>
+
+      <Sidebar isOpen={isMenuOpen} toggleMenu={toggleMenu}/>
+
       <h1>My To Do List App</h1>
 
       <section>
@@ -33,15 +49,15 @@ function App() {
       </section>
 
 
-      <Button onClick={handleAdd} color="green">
+      <Button onClick={handleAdd} color="green">    
         Add New Task
       </Button>
 
       <Button onClick={handleDelete} color="red">
-        Delete All
+        Delete All                                    
       </Button>
 
-      <TaskList tasks={taskList}></TaskList>
+      <TaskList tasks={taskList} onDelete ={deleteItem}></TaskList>
     </div>
   )
 

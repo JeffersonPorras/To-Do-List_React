@@ -36,3 +36,11 @@
     background: rgba(231, 76, 60, 0.8);
     color: white;
 }
+
+@media (max-width: 480px){
+    .custom-button{
+        width: 90%;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+}
