@@ -37,6 +37,11 @@
     color: white;
 }
 
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 @media (max-width: 480px){
     .custom-button{
         width: 90%;

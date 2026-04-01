@@ -7,12 +7,12 @@ function Input({value, onChange, placeholder}) {
         type="text" 
         className='input-field'
         placeholder={placeholder || "write your task"}
+        required
         value={value}
         onChange={onChange}
         />
     </div>
     
     );
-    
 }
 export default Input;
