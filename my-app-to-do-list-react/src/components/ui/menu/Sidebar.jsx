@@ -7,9 +7,9 @@ function Sidebar({isOpen, toggleMenu ,setView}) {
              <button className="close-btn" onClick={toggleMenu}>&times;</button>
 
             <nav className="sidebar-nav">
-                <button onClick={() => {setView("dashboard"); toggleMenu();}}>🏠 Tareas Diarias</button>
-                <button onClick={() => {setView("future"); toggleMenu();}}>🚀 Agenda a Futuro</button>
-                <button onClick={() => {setView("history"); toggleMenu();}}>✅ Historial</button>
+                <button className="sidebar-nav_button" onClick={() => {setView("dashboard"); toggleMenu();}}>🏠 Tareas Diarias</button>
+                <button className="sidebar-nav_button" onClick={() => {setView("future"); toggleMenu();}}>🚀 Agenda a Futuro</button>
+                <button className="sidebar-nav_button" onClick={() => {setView("history"); toggleMenu();}}>✅ Historial</button>
             </nav>
             {isOpen && <div className="overlay" onClick={toggleMenu}></div> }
         </div>

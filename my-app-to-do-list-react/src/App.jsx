@@ -9,7 +9,10 @@ function App() {
   const [taskText, setTaskText] = useState(""); 
   const [taskType, setTaskType] = useState("daily");
   const [dueDate, setDueDate] = useState ("");
-  const [view, setView] = useState("dashboard"); 
+  const [view, setView] = useState(() =>{
+    const saveView = localStorage.getItem("currentView");
+    return saveView ? saveView : "dashboard";
+  }); 
 
   const [taskList, setTaskList] = useState(() => {
     const savedTasks = localStorage.getItem("myTasks");
@@ -22,7 +25,7 @@ function App() {
 
   const dailyTask = taskList.filter(t => t.type === "daily" && !t.completed);
   const futureTask = taskList.filter(t => t.type === "future" && !t.completed);
-  const completedHistory = taskList.filter( t => t.completed);
+  const completedHistory = taskList.filter( t => t.completed && t.type === "future");
 
 
   const completedTask = (id) =>{
@@ -56,13 +59,21 @@ function App() {
     setTaskList(newList);
   }
 
+  const clearDaily = () => {
+    const newList = taskList.filter(t => t.type !== "daily");
+    setTaskList(newList);
+    localStorage.setItem("myTasks", JSON.stringify(newList));
+  }
+  
+
   function handleDelete() {
     setTaskList([]);
   }
 
   useEffect(() => {
     localStorage.setItem("myTasks", JSON.stringify(taskList));
-  },[taskList]);
+    localStorage.setItem("currentView", view);
+  },[taskList, view]);
 
   return(
     
@@ -112,6 +123,10 @@ function App() {
         <Button onClick={handleDelete} color="red">
           Delete All
         </Button>
+
+        <button onClick={clearDaily} color="red">
+          Limpiar Tareas Diarias
+        </button>
       </section>
 
       <div className="dashboard">
