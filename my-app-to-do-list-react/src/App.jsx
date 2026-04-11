@@ -9,9 +9,10 @@ function App() {
   const [taskText, setTaskText] = useState(""); 
   const [taskType, setTaskType] = useState("daily");
   const [dueDate, setDueDate] = useState ("");
+  const [searchText, setSearchText] = useState("");
   const [view, setView] = useState(() =>{
-    const saveView = localStorage.getItem("currentView");
-    return saveView ? saveView : "dashboard";
+    const savedView = localStorage.getItem("currentView");
+    return savedView ? savedView : "dashboard";
   }); 
 
   const [taskList, setTaskList] = useState(() => {
@@ -23,8 +24,18 @@ function App() {
 
   const isFormInvalid = taskText.trim().length === 0 || (taskType === "future" && dueDate.length === 0);
 
-  const dailyTask = taskList.filter(t => t.type === "daily" && !t.completed);
-  const futureTask = taskList.filter(t => t.type === "future" && !t.completed);
+  const dailyTask = taskList.filter(t => 
+    t.type === "daily" && 
+    !t.completed && 
+    t.text.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const futureTask = taskList.filter(t => 
+    t.type === "future" && 
+    !t.completed &&
+    t.text.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   const completedHistory = taskList.filter( t => t.completed && t.type === "future");
 
 
@@ -68,7 +79,10 @@ function App() {
 
   function handleDelete() {
     setTaskList([]);
+    localStorage.removeItem("myTasks");
+    setView("dashboard")
   }
+
 
   useEffect(() => {
     localStorage.setItem("myTasks", JSON.stringify(taskList));
@@ -120,14 +134,33 @@ function App() {
           Add New Task
         </Button>
 
+        {view === "dashboard" && 
         <Button onClick={handleDelete} color="red">
           Delete All
         </Button>
+        }
+        { view === "future" &&
+         <Button onClick={handleDelete} color="red">
+          Delete All
+        </Button>  
+        }
 
-        <button onClick={clearDaily} color="red">
-          Limpiar Tareas Diarias
-        </button>
+
+        { view === "history" && 
+          <Button onClick={handleDelete} color="red">
+          Eliminar todo el historial 
+        </Button>
+        }
       </section>
+
+      <Input
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          placeholder="buscar tarea"
+        >
+        </Input>
+
+
 
       <div className="dashboard">
 
